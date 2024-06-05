@@ -21,7 +21,7 @@ func _process_modification() -> void:
 		return
 	var sk:Skeleton3D = get_parent()
 	if not sk:
-		push_error("SkeletonLookAt3D does not have a Skeleton3d Parent.")
+		push_error("SkeletonLookAt3D does not have a Skeleton3D Parent.")
 		return
 	var id:int = Utils._get_id_from_name(sk, bone)
 	if id == -1:

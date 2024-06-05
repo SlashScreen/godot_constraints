@@ -1,4 +1,4 @@
-[gd_scene load_steps=56 format=3 uid="uid://dxmlfj1ltxpve"]
+[gd_scene load_steps=57 format=3 uid="uid://dxmlfj1ltxpve"]
 
 [ext_resource type="PackedScene" uid="uid://kod0awm1ha4o" path="res://gobot/model/gobot.glb" id="1_7jt4k"]
 [ext_resource type="Texture2D" uid="uid://dq675fmt1rg8c" path="res://gobot/textures/open_eye.png" id="2_3a3ly"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" path="res://addons/godot_bone_modifers/modifiers/skeleton_look_at_3d.gd" id="3_mox1l"]
 [ext_resource type="Script" path="res://addons/godot_bone_modifers/modifiers/skeleton_match_transform_3d.gd" id="4_ksnvl"]
 [ext_resource type="Script" path="res://addons/godot_bone_modifers/modifiers/skeleton_constant_modify_3d.gd" id="5_ht6si"]
+[ext_resource type="Script" path="res://addons/godot_bone_modifers/modifiers/skeleton_jiggle_bone_3d.gd" id="6_878ef"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_t4001"]
 render_priority = 1
@@ -2111,14 +2112,14 @@ bones/0/position = Vector3(0.125361, 0.0989139, 0.0728901)
 bones/0/rotation = Quaternion(0.772549, 0.107691, -0.136221, 0.610749)
 bones/1/position = Vector3(-0.109875, 0.0989111, -0.0510765)
 bones/1/rotation = Quaternion(0.679368, -0.310085, 0.392234, 0.537083)
-bones/2/position = Vector3(0, 0.352475, 0)
-bones/2/rotation = Quaternion(0.0697564, -0.000410342, 2.86943e-05, 0.997564)
-bones/3/rotation = Quaternion(1, 8.36889e-12, -7.55648e-08, 7.45058e-09)
-bones/4/rotation = Quaternion(-0.484484, -0.161097, -0.0586525, 0.857836)
-bones/5/rotation = Quaternion(0.381905, 1.0293e-06, -1.30529e-05, 0.924202)
-bones/6/rotation = Quaternion(-0.238329, 0.521915, 0.219756, 0.788994)
-bones/7/rotation = Quaternion(0.514282, -9.93505e-07, 1.76016e-05, 0.857621)
-bones/8/rotation = Quaternion(-0.711696, -0.244014, -0.589103, 0.294794)
+bones/2/position = Vector3(0, 0.352539, 0)
+bones/2/rotation = Quaternion(0.0697315, 0.0267056, -0.00186744, 0.997207)
+bones/3/rotation = Quaternion(1, -5.79458e-11, -7.50285e-08, 3.72697e-09)
+bones/4/rotation = Quaternion(-0.481931, -0.135242, -0.0450282, 0.864537)
+bones/5/rotation = Quaternion(0.354008, 1.05344e-06, -1.20972e-05, 0.935243)
+bones/6/rotation = Quaternion(-0.211752, 0.550563, 0.227925, 0.774656)
+bones/7/rotation = Quaternion(0.504151, -9.88374e-07, 1.7263e-05, 0.863615)
+bones/8/rotation = Quaternion(-0.656712, -0.26917, -0.649834, 0.272018)
 bones/9/rotation = Quaternion(2.16937e-07, 5.35541e-07, -0.395029, 0.918669)
 bones/10/rotation = Quaternion(-0.289732, -0.637458, -0.217438, 0.680017)
 bones/11/rotation = Quaternion(0.487906, -0.0174399, 0.00854542, 0.87268)
@@ -2126,7 +2127,7 @@ bones/12/rotation = Quaternion(-0.371224, -0.00197697, 0.00585366, 0.928523)
 bones/13/rotation = Quaternion(-0.502333, 1.50049e-05, -2.85054e-05, 0.864674)
 bones/14/rotation = Quaternion(-0.371224, -0.00197698, 0.00585369, 0.928523)
 bones/15/rotation = Quaternion(-0.502333, 1.49999e-05, -2.85068e-05, 0.864674)
-bones/16/rotation = Quaternion(-0.599388, 0.291216, 0.703056, 0.248274)
+bones/16/rotation = Quaternion(-0.659318, 0.268075, 0.647189, 0.273098)
 bones/17/rotation = Quaternion(2.27203e-07, -5.84749e-07, 0.395029, 0.918669)
 bones/18/rotation = Quaternion(-0.289732, 0.637458, 0.217438, 0.680017)
 bones/19/rotation = Quaternion(0.487906, 0.0174399, -0.00854541, 0.87268)
@@ -2193,7 +2194,7 @@ target = NodePath("../../../../../Node3D")
 use_model_front = true
 
 [node name="BoneAttachment3D" type="BoneAttachment3D" parent="GobotSkin/gobot/Armature/Skeleton3D" index="4"]
-transform = Transform3D(0.999495, -0.000237326, -0.0317871, 1.16415e-10, 0.999972, -0.00746591, 0.031788, 0.00746212, 0.999467, -0.000130417, 0.541926, 0.0141307)
+transform = Transform3D(0.999485, -0.000240532, -0.0320764, 0, 0.999972, -0.0074985, 0.0320773, 0.00749464, 0.999457, 0.000428117, 0.541988, 0.0141432)
 bone_name = "Head"
 bone_idx = 24
 
@@ -2217,6 +2218,28 @@ active = true
 influence = 1.0
 script = ExtResource("5_ht6si")
 bone = &"Head"
+
+[node name="SkeletonJiggleBone3D" type="SkeletonModifier3D" parent="GobotSkin/gobot/Armature/Skeleton3D" index="7"]
+_import_path = NodePath("")
+unique_name_in_owner = false
+process_mode = 0
+process_priority = 0
+process_physics_priority = 0
+process_thread_group = 0
+physics_interpolation_mode = 0
+auto_translate_mode = 0
+editor_description = ""
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+rotation_edit_mode = 0
+rotation_order = 2
+top_level = false
+visible = true
+visibility_parent = NodePath("")
+active = true
+influence = 1.0
+script = ExtResource("6_878ef")
+gravity_direction = Vector3(0, 0, 0)
+gravity_strength = 0.0
 
 [node name="AnimationPlayer" parent="GobotSkin/gobot" index="1"]
 libraries = {
@@ -2242,8 +2265,8 @@ root_node = NodePath("%AnimationTree/../gobot")
 tree_root = SubResource("AnimationNodeBlendTree_8xvna")
 anim_player = NodePath("../gobot/AnimationPlayer")
 parameters/current_length = 2.0
-parameters/current_position = 1.23834
-parameters/current_delta = 0.00332917
+parameters/current_position = 0.758963
+parameters/current_delta = 0.00807558
 parameters/Animation/current_length = null
 parameters/Animation/current_position = null
 parameters/Animation/current_delta = null
@@ -2251,20 +2274,20 @@ parameters/Flip/current_length = null
 parameters/Flip/current_position = null
 parameters/Flip/current_delta = null
 parameters/FlipShot/current_length = 2.0
-parameters/FlipShot/current_position = 1.23834
-parameters/FlipShot/current_delta = 0.00332917
+parameters/FlipShot/current_position = 0.758963
+parameters/FlipShot/current_delta = 0.00807558
 parameters/FlipShot/active = false
 parameters/FlipShot/internal_active = false
 parameters/FlipShot/request = 0
 parameters/HurtShot/current_length = 2.0
-parameters/HurtShot/current_position = 1.23834
-parameters/HurtShot/current_delta = 0.00332917
+parameters/HurtShot/current_position = 0.758963
+parameters/HurtShot/current_delta = 0.00807558
 parameters/HurtShot/active = false
 parameters/HurtShot/internal_active = false
 parameters/HurtShot/request = 0
 parameters/StateMachine/current_length = 2.0
-parameters/StateMachine/current_position = 1.23834
-parameters/StateMachine/current_delta = 0.00332917
+parameters/StateMachine/current_position = 0.758963
+parameters/StateMachine/current_delta = 0.00807558
 parameters/StateMachine/EdgeGrab/current_length = null
 parameters/StateMachine/EdgeGrab/current_position = null
 parameters/StateMachine/EdgeGrab/current_delta = null
@@ -2275,8 +2298,8 @@ parameters/StateMachine/Fall/current_length = null
 parameters/StateMachine/Fall/current_position = null
 parameters/StateMachine/Fall/current_delta = null
 parameters/StateMachine/Idle/current_length = 2.0
-parameters/StateMachine/Idle/current_position = 1.23834
-parameters/StateMachine/Idle/current_delta = 0.00332917
+parameters/StateMachine/Idle/current_position = 0.758963
+parameters/StateMachine/Idle/current_delta = 0.00807558
 parameters/StateMachine/Jump/current_length = null
 parameters/StateMachine/Jump/current_position = null
 parameters/StateMachine/Jump/current_delta = null
@@ -2306,8 +2329,8 @@ parameters/StateMachine/WallSlide/current_length = null
 parameters/StateMachine/WallSlide/current_position = null
 parameters/StateMachine/WallSlide/current_delta = null
 parameters/output/current_length = 2.0
-parameters/output/current_position = 1.23834
-parameters/output/current_delta = 0.00332917
+parameters/output/current_position = 0.758963
+parameters/output/current_delta = 0.00807558
 
 [node name="Node3D" type="Marker3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0614808, 0.527516, 1.94314)
