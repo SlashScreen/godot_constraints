@@ -14,10 +14,10 @@ const Utils = preload("../utils.gd")
 @export var motion:Curve = preload("default_motion.res")
 @export var drag:float = 0.2
 @export var stiffness_force:float = 0.5
-@export var gravity_direction:Vector3 = ProjectSettings.get_setting("physics/2d/default_gravity_vector")
+@export var gravity_direction:Vector3 = ProjectSettings.get_setting("physics/3d/default_gravity_vector")
 @export var gravity_strength:float = ProjectSettings.get_setting("physics/3d/default_gravity")
 
-var _bid:int
+var _bid:int = -1
 var sk:Skeleton3D:
 	get:
 		return get_parent() as Skeleton3D
@@ -72,7 +72,11 @@ func _apply_rotation(next_tail:Vector3) -> Quaternion:
 	_prev_tail = _current_tail
 	_current_tail = next_tail
 	var pid:int = sk.get_bone_parent(_bid)
-	var p_tr:Transform3D = sk.get_bone_global_pose(pid)
+	if pid == -1:
+		return Quaternion.IDENTITY
+	var p_tr:Transform3D = Transform3D() 
+	if not pid == -1:
+		p_tr = sk.get_bone_global_pose(pid)
 	
 	var to:Vector3 = (next_tail * (p_tr * _initial_local_transform).inverse()).normalized()
 	return _initial_rot * Quaternion.from_euler(to) # ???
@@ -85,7 +89,9 @@ func _initialize_bone() -> void:
 	var pid:int = sk.get_bone_parent(_bid)
 	if pid == -1:
 		_bone_length = 1.0
-	var p_pos = sk.get_bone_rest(pid).origin
+	var p_pos = Vector3.ZERO 
+	if not pid == -1:
+		sk.get_bone_rest(pid).origin
 	_bone_length = _initial_local_transform.origin.distance_to(p_pos)
 
 
